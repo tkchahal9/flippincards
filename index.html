@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flipping Cards</title>
+</head>
+<body>
+
+<div>
+
+    <input v-model="question" type="text" placeholder="Enter question here">
+    <input v-model="answer" type="text" placeholder="Enter answer here">
+    <button v-on:click="addCard">Submit</button>
+
+    <div>
+        <input type="radio" id="History" value="History" >History</input>
+        <input type="radio" id="Science" value="Science" >Science</input>
+        <input type="radio" id="Math" value="Math" >Math</input>
+    </div>
+
+</div>
+<div id="flashcards-app">
+
+    <div v-for="card in cards" class="card">
+        <div class="top" v-bind:class="card.category" ></div>
+        <div class="side1" v-bind:class="{hide:card.flipped}">
+            <h1>{{card.question}}</h1>
+        </div>
+        <!--     In your template, remove the 'hide' class from the side1 and side2 elements. 'hide' class should be conditionally rendered through the 'flipped' value in the card -->
+        <div class="hide" v-bind:class="{side2:card.flipped}">
+            <h1>{{card.answer}}</h1>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="card.js"></script>
+<link rel="stylesheet" type="text/css" href="cards.css">
+</body>
+</html>
